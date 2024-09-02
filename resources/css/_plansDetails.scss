@@ -1,0 +1,425 @@
+.plans_details_wrap{
+    .members_breadcrums{
+        .members_navigate_wrap{ align-items: center; }
+    }
+    .plan_name_status_block{
+        @include flex-align(flex-start);
+        gap: 15px 20px;
+        .plan_name_input_field {
+            flex: 1 1 auto;
+        }
+        .status_input_field{
+            @include maxwidth(225px);
+        }
+        @media (max-width: 600px) {
+            .status_input_field{
+                flex: 1 1 auto;
+                max-width: 100%;
+                width: auto;
+            }
+        }
+        @media (max-width: 480px) {
+            flex-direction: column;
+            .status_input_field, .plan_name_input_field{
+                width: 100%;
+            }
+        }
+    }
+    .plans_details_row{
+        .change_product_wrap{
+            @include flex-align(center);
+            gap: 15px 20px;
+
+            .product_image_wrap{
+                @include width(60px, 60px);
+                border-radius: 2px;
+                border: 1px solid $silver;
+                img, .Polaris-Icon{
+                    @include width(100%, 100%);
+                    border-radius: 2px;
+                    object-fit: contain;
+                }
+            }
+            .product_input_field{ flex: 1 1 auto; width: calc(100% - 80px); }
+            @media (max-width: 480px) {
+                flex-direction: column;
+                align-items: flex-start;
+                .product_input_field{ width: 100%; }
+                .product_image_wrap{ @include width(100px, 100px); }
+            }
+        }
+
+        .create_new_tier_head {
+            padding: 12px;
+            gap: 10px;
+            box-shadow: 0px -1px 0px 0px #E1E3E5 inset;
+
+            .new_tier_tabs{
+                flex: 1 1 auto;
+                overflow: hidden;
+                .Polaris-Tabs__Wrapper{ padding: 0; }
+                .Polaris-Tabs__Outer{
+                    height: auto;
+                    .Polaris-Box{
+                        padding: 0;
+                        .Polaris-Tabs{
+                            padding: 0;
+                            flex-wrap: nowrap;
+                            overflow-x: auto;
+                            overflow-y: hidden;
+                            @include customscroll();
+                            width: 100%
+                        }
+                    }
+                }
+            }
+            .create_new_tier_button{
+                @include maxwidth(142px);
+                margin: 0 0 0 auto;
+                button{ width: 100%; }
+            }
+            @media (max-width: 400px) {
+                flex-wrap: wrap;
+                .create_new_tier_button{ margin: 0 0 0 auto; }
+            }
+        }
+
+        .tier_info_wrap{
+            padding: 20px;
+            .input_field_row{
+                &:not(:last-child){ margin: 0 0 20px; }
+            }
+        }
+        .save_changes_wrap{
+            padding: 16px;
+            box-shadow: 0px 1px 0px 0px #E4E5E7 inset;
+            text-align: right;
+            @include flex(center, space-between);
+            flex-wrap: wrap;
+            gap: 10px;
+            button.Polaris-Button.Polaris-Button--primary{
+                margin: 0 0 0 auto;
+            }
+            @media (max-width: 330px) {
+                &{
+                    button.Polaris-Button { width: 100%; }
+                }
+            }
+        }
+    }
+}
+.title_badge_block {
+    @include flex-align(center);
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.label_block{
+    h6{
+       display: inline-block;
+       color: $darekBlack;
+       &>span, .tooltip_wrap{
+            margin: 0 0 0 10px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        span.Polaris-Icon{
+            @include width(12px, 12px);
+            opacity: 0.6;
+            cursor: pointer;
+        }
+    }
+}
+
+.badge_wrap{
+    @include flex-align(center);
+    gap: 8px;
+    .next_billing_attempt{
+       @include font(10px, 400, 16px, $darekBlack);
+    }
+}
+
+.accordion_wrap{
+    .accordion_row{
+        width: 100%;
+        box-shadow: 0px 1px 0px 0px $lightgray inset;
+        .accordion_col_wrap{
+            padding: 20px 42px 20px 20px !important;
+            width: 100%;
+            text-align: left;
+            position: relative;
+            .chevron_down_icon{
+                position: absolute;
+                @include width(20px, 20px);
+                right: 20px;
+                top: 22px;
+            }
+            @media (max-width: 480px) {
+                padding: 15px 36px 15px 15px;
+                .chevron_down_icon{ right: 15px; top: 20px; }
+            }
+        }
+        .collapsible_block{
+            padding: 0 20px 20px;
+            .accordion_wrap{
+                &:not(:first-child){ box-shadow: 0px 1px 0px 0px $lightgray inset; }
+            }
+        }
+    }
+}
+.price_lengths_accordion{
+    .Polaris-Text--root{
+        color: $darekBlack;
+    }
+    .accordion_wrap{
+        .accordion_row{
+            box-shadow: none;
+            .collapsible_block{
+                padding: 0 0 20px;
+            }
+            .accordion_col_wrap {
+                padding: 20px 0 !important;
+                .chevron_down_icon{ right: 0; }
+            }
+        }
+        &:last-child{
+            .accordion_row{
+                .collapsible_block{
+                    padding: 20px 0 0;
+                }
+                .accordion_col_wrap { padding: 20px 0 0 !important; }
+            }
+        }
+    }
+
+    .switch_checkbox_options_block{
+        padding: 15px;
+        border-radius: 4px;
+        background: $vistaWhite;
+    }
+    .delete_plan_length{
+        width: 100%;
+        color: white !important;
+        button{ margin: 0 0 0 auto; display: block; }
+    }
+}
+
+#btn-delete-tier{
+    visibility: hidden;
+}
+
+.add_restricted_table_block{
+    border-radius: 8px;
+    border: 1px solid $coolGrey;
+    button.Polaris-Button {
+        padding: 7px 11px;
+    }
+    table{
+        thead{
+            th{
+                border-radius: 8px;
+                &:first-child{
+                    position: unset !important;
+                }
+                &:nth-child(1), &:nth-child(2){
+                    min-width: 370px;
+                    // width: 370px;
+                }
+                &:last-child{
+                    min-width: 44px;
+                    width: 44px;
+                }
+            }
+        }
+        tbody{
+            tr{
+                td{
+                    position: unset;
+                    padding: 10px 0 10px 16px !important;
+                    vertical-align: top;
+                    &:first-child{
+                        padding: 0;
+                        span.Polaris-Icon{ margin: 0 0 0 auto; }
+                    }
+                    &:last-child{
+                        padding-right: 16px !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.add_restricted_table_block.pos_discount_table, .add_restricted_table_block.additional_questions_table  {
+    table{
+        thead{
+            th{
+                &:first-child{
+                    min-width: 36px;
+                    width: 36px;
+                    position: unset !important;
+                }
+                &:nth-child(2), &:nth-child(3){
+                    min-width: 200px;
+                    // width: 480px;
+                }
+            }
+        }
+        tbody{
+            tr{
+                td{
+                    &:first-child{
+                        vertical-align: middle;
+                        border-radius: 8px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.pagename_th{
+    @include flex-align(center);
+    gap: 4px;
+    .Polaris-Icon{
+        @include width(12px, 12px);
+    }
+}
+
+.important_note{
+    margin-top: 15px;
+    b{
+        color: #475467;
+        font-weight: 600;
+    }
+}
+
+.pos_discount_table{
+    table{
+        thead{
+            th{
+                &:nth-child(3){
+                    min-width: 400px;
+                    // width: 495px;
+                }
+            }
+        }
+        tbody{
+            tr{
+                td{
+                    .discount_amount_field{
+                        @include flex-align(flex-start);
+                        gap: 16px;
+                        .discount_amount_input{ flex: 1 1 auto; }
+                        .discount_percentage_input{ width: 90px; flex: 0 0 auto; }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.open_shopify_button_discount{
+    text-decoration: none;
+}
+
+.additional_questions_table{
+    table{
+        thead{
+            th{
+                &:nth-child(2), &:nth-child(3), &:nth-child(4){
+                    min-width: 280px;
+                    width: 280px;
+                }
+            }
+        }
+    }
+}
+
+.switch_options_wrap{
+    .options_sub_block{
+        padding: 20px 0;
+        margin: 0 0 20px 0;
+        border-bottom: 1px solid #E6E7E9;
+    }
+    &:not(:last-child){ margin: 0 0 20px 0; }
+    &:last-child{
+        .options_sub_block{
+            padding-bottom: 0;
+            margin: 0;
+            border: none;
+        }
+    }
+}
+.switch_checkbox_field{
+    position: relative;
+    padding: 0 0 0 46px;
+    .Polaris-Choice__Control{
+        position: absolute;
+        @include width(38px, 21px);
+        opacity: 0;
+        top: 0;
+        left: 0;
+        z-index: 999;
+    }
+    .switch {
+        position: absolute;
+        display: inline-block;
+        @include width(38px, 21px);
+        left: 0;
+        top: 4px;
+    }
+}
+
+
+// checkbox switch style
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $white;
+    border: 1px solid #AEB4B9;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    @include width(15px, 15px);
+    left: 2px;
+    bottom: 2px;
+    background-color: #AEB4B9;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+.checked_checkbox .slider:before {
+    -webkit-transform: translateX(17px);
+    -ms-transform: translateX(17px);
+    transform: translateX(17px);
+}
+.checked_checkbox .slider:before {
+    background-color: $white;
+}
+.checked_checkbox .slider {
+    background-color: $darkgreen;
+    border-color: $darkgreen;
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 50px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}

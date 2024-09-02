@@ -1,0 +1,150 @@
+.reportsWrap {
+    .Polaris-Page{
+        
+        padding-top:0 ;
+        padding-bottom: 0;
+        border: none;
+        
+    }
+}
+
+// .subheader_wrap{
+//     border-bottom: 1px solid #DDE0E4;
+// }
+
+.calanderWrap {
+
+
+    >div {
+        width: 100%;
+
+        &:last-child {
+            width: auto;
+        }
+    }
+    .Polaris-SkeletonBodyText__SkeletonBodyTextContainer{
+        width: 100% !important;
+        height: 40px;
+        .Polaris-SkeletonBodyText{
+            height: 100%;
+        }
+    }
+
+    .calanderBtn {
+        width: 100%;
+
+        button {
+            width: 100%;
+            border: 1px solid #BABFC3;
+            border-radius: 4px;
+
+            .Polaris-Button__Content {
+                flex-direction: row-reverse;
+                justify-content: space-between;
+                padding: 7px 0;
+            }
+        }
+    }
+
+    .Polaris-TextField {
+        flex-direction: row-reverse;
+        justify-content: space-between;
+    }
+
+}
+.Polaris-Popover__Content:has(.dropdown_wrap){
+    max-width: 67rem;
+
+}
+.Polaris-Popover__PopoverOverlay--open:has(.dropdown_wrap){
+    top: 110px !important;
+
+}
+// .Polaris-Popover__Content{
+//     max-width: 67rem;
+//         }
+.chartContainer {
+    display: flex;
+    align-items: self-start;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+    margin: 20px 0;
+    .Polaris-SkeletonThumbnail--sizeLarge{
+        width: 100%;
+        height: 200px;
+    }
+    ._ChartDimensions_qgx6z_1 {
+        height: 288px;
+    }
+
+    .Polaris-Box {
+        width: 100%;
+        // min-height: 400px;
+        // max-height: 400px;
+
+        h5 {
+            margin-bottom: 10px;
+        }
+
+        h6 {
+            margin-bottom: 15px;
+        }
+
+        ._Label_17yst_150 {
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 16px;
+            color: #70707B;
+        }
+    }
+}
+
+.dropdownBtn {
+    button {
+        width: 100%;
+        border: 1px solid #BABFC3;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        margin-right : auto;
+
+        .Polaris-Button__Content {
+            padding: 17px 0;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+ 
+        }
+        > span{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+}
+
+// .Polaris-Connected {
+//     max-width: 215px;
+
+//     .Polaris-TextField--hasValue {
+//         flex-direction: row-reverse;
+//         justify-content: space-between;
+
+//         input {
+//             padding-left: 15px;
+//             padding-right: 0;
+//         }
+//     }
+// }
+
+#calanderBox {
+    border-right: 1px solid #BABFC3;
+}
+
+.report_add {
+    padding: 35px;
+}
+
+.report_subheader {
+    border-bottom: 1px solid #DDE0E4;
+}

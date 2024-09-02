@@ -1,0 +1,351 @@
+.settings_wrap {
+    .Polaris-Button--plain {
+        padding: 0;
+        min-height: auto;
+        margin: 0;
+        span {
+            font-weight: 400;
+        }
+    }
+    .emails_templates_checkbox {
+        @include flex(center, space-between);
+        flex-wrap: wrap;
+        gap: 10px;
+
+        .checkbox_block {
+            flex: 1 1 auto;
+        }
+        .Polaris-Button {
+            margin: 0 0 0 auto;
+        }
+    }
+    .emails_collpsible {
+        padding: 0 0 20px;
+        border-bottom: 1px solid #eeeef0;
+        .emails_templates_checkbox {
+            &:not(:last-child) {
+                margin: 0 0 20px;
+            }
+        }
+    }
+    .email_input_fields_block {
+        padding: 20px 0 0;
+    }
+
+    .bold_max_length_text {
+        @include flex-align(flex-start);
+        flex-wrap: wrap;
+        gap: 20px;
+        .checkbox_field {
+            @include maxwidth(352px);
+        }
+    }
+    .radio_field,
+    .notification_checkboxes_fields .checkbox_block {
+        &:not(:last-child) {
+            margin: 0 0 20px;
+        }
+    }
+    .savechanges_block {
+        padding: 16px;
+        text-align: right;
+        box-shadow: 0px 1px 0px 0px $lightgray inset;
+    }
+    .member_portal_col {
+        @include flex(center, space-between);
+        flex-wrap: wrap;
+        gap: 20px 15px;
+        h6 {
+            color: $darekBlack;
+            flex: 1 1 auto;
+        }
+    }
+    .account_billings_block {
+        h6 {
+            color: $darekBlack;
+        }
+        .plans_row_block {
+            @include grid(3, 32px, 32px);
+
+            @media (max-width: 1160px) {
+                gap: 20px;
+            }
+            @media (max-width: 960px) {
+                grid-template-columns: repeat(2, 1fr);
+                .plans_col {
+                    &:last-child {
+                        grid-column: 1 / -1;
+                    }
+                }
+            }
+            @media (max-width: 660px) {
+                grid-template-columns: repeat(1, 1fr);
+            }
+            .plans_col {
+                border-radius: 8px;
+                border: 1px solid $lightgray;
+                background-color: $white;
+                display: flex;
+                flex-direction: column;
+                .plan_heading_block {
+                    @include flex-align(center);
+                    flex-wrap: wrap;
+                    gap: 8px;
+                    padding: 20px;
+                    .Polaris-Icon--colorBase svg {
+                        fill: $darekBlack;
+                    }
+                    .question_block {
+                        @include width(15px, 15px);
+                        margin: 0 0 0 auto;
+                    }
+                }
+                .plan_details_block {
+                    padding: 20px;
+                    box-shadow: 0px 1px 0px 0px $lightgray inset;
+                    .per_member {
+                        h6 {
+                            font-style: italic;
+                        }
+                    }
+                    .start_plan_list {
+                        ul {
+                            li {
+                                @include font(14px, 400, 20px, $darekBlack);
+                                &:not(:last-child) {
+                                    margin: 0 0 8px;
+                                }
+                                position: relative;
+                                padding: 0 0 0 22px;
+                                .right_icon {
+                                    position: absolute;
+                                    left: 0;
+                                    top: 2px;
+                                }
+                            }
+                        }
+                    }
+                }
+                .plans_footer_block {
+                    padding: 20px;
+                    box-shadow: 0px 1px 0px 0px $lightgray inset;
+                    margin: auto 0 0;
+                }
+                .stores_block {
+                    padding: 20px;
+                    .best_for_stores {
+                        border-radius: 8px;
+                        border: 1px solid $lightgreyblue;
+                        background: $lightblue;
+                        padding: 10px;
+                        h6 {
+                            text-align: center;
+                        }
+                    }
+                }
+
+                @media (max-width: 480px) {
+                    & {
+                        .plan_heading_block,
+                        .plan_details_block,
+                        .plans_footer_block,
+                        .stores_block {
+                            padding: 15px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .edit_subject_block {
+        margin-bottom: 20px;
+    }
+}
+
+.send_test_wrap {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.setting_edit_modal_wrap {
+    .editor_wrap {
+        overflow: hidden;
+        overflow-x: auto;
+    }
+    .setting_modal_field_wrap {
+        margin-bottom: 20px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 15px;
+        .subject_field {
+            flex: 1 1 auto;
+        }
+        @media (max-width: 480px) {
+            flex-direction: column;
+            .notify_field,
+            .subject_field {
+                width: 100%;
+            }
+        }
+    }
+}
+.inputs_wrap {
+    padding: 15px;
+    .inputs {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 20px;
+        grid-row-gap: 20px;
+    }
+}
+
+.btn-primart-transalation-save {
+    display: flex;
+    margin-top: 9px;
+    justify-content: flex-end;
+}
+
+.setting_list_wrap {
+    h1 {
+        font-size: 2rem;
+        line-height: 3.2rem;
+    }
+}
+
+.general_wrap {
+    h2 {
+        margin: 15px 0px 15px 0px;
+        font-size: larger;
+        font-weight: 600;
+    }
+}
+
+.input-margin-top {
+    margin-top: 10px;
+}
+.editcode-wrap {
+    @media (min-width: 1008px) {
+        display: flex;
+        gap: 15px;
+        align-items: self-start;
+    }
+    border-radius: 7px;
+    background-color: white;
+    filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.25));
+    padding: 10px;
+    overflow: hidden;
+    .left-btn {
+        li {
+            cursor: pointer;
+            padding: 1rem;
+            @media (min-width: 1008px) {
+                width: 243px;
+            }
+
+            &.active {
+                border-radius: 5px;
+                background-color: #eff1f4;
+            }
+        }
+    }
+    .plans_list_wrap {
+        @media (min-width: 1008px) {
+            border-left: 1px solid #a39797;
+
+            width: 100%;
+        }
+        @media(max-width: 1008px){
+
+            border-top: 1px solid #a39797;
+        }
+        h2 {
+            font-weight: 600;
+            line-height: 2.4rem;
+            margin: 0;
+            padding: 0 20px;
+            font-size: 1rem;
+            font-family: "SF Pro Text", sans-serif;
+        }
+    }
+}
+.buttons {
+    position: absolute;
+    max-width: 150px;
+    width: 100%;
+    padding: 10px 0;
+    // left: 95.6%;
+    // top: 0;
+    right: 0;
+    // transform: translate(-50%,-50%);
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    // margin-top: 10px;
+}
+.Polaris-Page__Content {
+    position: relative;
+}
+.settings-back-wrap {
+    width: 36px;
+    height: 36px;
+    border: 1px solid #babfc3;
+    border-radius: 4px;
+    display: grid;
+    place-content: center;
+}
+
+.top-head {
+    h1 {
+        font-size: 1.8rem;
+        line-height: 3.2rem;
+    }
+}
+
+#Edit-template-link {
+    text-decoration: none;
+}
+.navlink-warp {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.members_navigate_wrap {
+    align-items: center;
+}
+
+.back_arrow_wrap {
+    width: 36px;
+    height: 36px;
+    border: 1px solid #babfc3;
+    border-radius: 4px;
+    display: grid;
+    place-content: center;
+}
+.fulfilled_wrap{
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.resticted_content{
+    background-color: #F4F6F8;
+    padding-top: 20px;
+   padding: 20px ;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+}
+.resticted_data{
+    padding-left: 15px;
+}
+.resticted_heading {
+    font-size: 18px;
+}
+.resticted_deacription{
+    font-size: 15px;
+    color: rgb(80, 79, 79);
+}

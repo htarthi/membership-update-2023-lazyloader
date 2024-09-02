@@ -1,0 +1,88 @@
+.edit_program_wrap{
+    .edit_plan_header_block{
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 20px;
+        box-shadow: 0px -1px 0px 0px $lightgray inset;
+        .button_group_block{ margin: 0 0 0 auto; }
+    }
+
+    .edit_product_detail_block{
+        padding: 20px;
+        box-shadow: 0px -1px 0px 0px $lightgray inset;
+
+
+        .when_product_type{
+            @include flex-align(center);
+            flex-wrap: wrap;
+            gap: 10px;
+            .input_type_block { flex: 1 1 auto; }
+        }
+        .or_block{
+            @include maxwidth(94px);
+            text-align: center;
+        }
+    }
+    .products_tooltip{
+        @include flex-align(center);
+        gap: 8px;
+        .tooltip_block{
+            .Polaris-Icon{
+                cursor: pointer;
+                @include width(16px, 16px);
+            }
+        }
+    }
+    .option_block{
+        padding: 20px;
+
+        .options_status{
+            @include flex-align(center);
+            gap: 16px;
+        }
+        .options_table{
+            border: 1px solid $lightgray;
+            border-radius: 8px;
+        }
+    }
+    .cancle_save_block{
+        padding: 16px;
+        .Polaris-ButtonGroup{ justify-content: flex-end }
+        .save_button_wrap{
+            button{
+                span{ @include flex-align(center); gap: 4px; }
+            }
+        }
+    }
+}
+
+.back_to_last{
+    @include flex-align(center);
+    gap: 10px;
+    button{
+        padding: 7px 11px;
+        span.Polaris-Icon {
+            @include width(16px, 16px);
+        }
+    }
+}
+
+.product_picture_wrap{
+    @include flex-align(center);
+    flex-wrap: wrap;
+    gap: 20px;
+    .image_wrap{
+        @include width(60px, 60px);
+        border-radius: 2px;
+        border: 1px solid $lightgray;
+        img{
+            object-fit: cover;
+            @include width(100%, 100%);
+            border-radius: 2px;
+        }
+    }
+    .name_wrap{
+        flex: 1 1 auto;
+        h6{ &:first-child{ margin: 0 0 4px; @include lineclamp(1); } }
+    }
+}

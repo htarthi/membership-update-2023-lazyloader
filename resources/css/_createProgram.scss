@@ -1,0 +1,76 @@
+.create_program_wrap{
+    .Polaris-LegacyCard{ padding: 20px;
+        @media (max-width: 480px) { padding: 15px; }
+    }
+    .create_program_header{
+        gap: 10px;
+        padding: 0 0 20px;
+        flex-wrap: wrap;
+        button{ margin: 0 0 0 auto; }
+    }
+    .program_list_row{
+        .program_list_col{
+            @include background();
+            padding: 20px;
+            &:not(:last-child){ margin: 0 0 20px; }
+            @media (max-width: 480px) {
+                padding: 15px;
+            }
+            .edit_block{
+                gap: 10px;
+                padding: 0 0 15px;
+                flex-wrap: wrap;
+                button{ margin: 0 0 0 auto; }
+            }
+
+            .edit_profile_tag_block{
+                @include grid(2, 15px, 15px);
+                @media (max-width: 600px) {
+                    grid-template-columns: repeat(1, 1fr);
+                }
+                .edit_profile_col{
+                    @include flex-align(center);
+                    gap: 15px;
+                    padding: 8px;
+                    border: 1px solid $lightgray;
+                    border-radius: 8px;
+
+                    .profile_block{
+                        @include width(42px, 42px);
+                        border-radius: 8px;
+                        border: 1px solid $lightgray;
+                        padding: 4px;
+                        img{
+                            object-fit: cover;
+                            @include width(100%, 100%);
+                            border-radius: 100%;
+                        }
+                    }
+                    h6{
+                       @include lineclamp(1);
+                       width: calc(100% - 57px);
+                    }
+                }
+                .edit_tag_col{
+                    border: 1px solid $lightgray;
+                    border-radius: 8px;
+                    .tag_col{
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 10px;
+                        padding: 6px 10px;
+                        @media (max-width: 320px) { flex-direction: column; }
+                        &:not(:last-child){
+                            border-bottom: 1px solid $lightgray;
+                        }
+                        h6{ flex: 1 1 auto; }
+                    }
+                }
+            }
+        }
+    }
+    .program_membership_table{
+        @include background();
+        border-radius: 8px;
+    }
+}

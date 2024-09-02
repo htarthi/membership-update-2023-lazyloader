@@ -1,0 +1,30 @@
+
+.simplee_membership_main_wrap{
+    .memberlist_pagination{
+        padding: 24px 16px;
+        box-shadow: 0px 1px 0px 0px #E4E5E7 inset;
+        .Polaris-ButtonGroup{ justify-content: center }
+    }
+    .Polaris-Filters__Container{ height: auto; }
+}
+
+.membership_table_tr{
+    &:hover{
+        background-color: rgba(241, 242, 244, 1);
+        .Polaris-IndexTable__TableCell:first-child{
+            background-color: rgba(241, 242, 244, 1) !important;
+        }
+    }
+}
+
+// skeleton css---------------------------------------------------------------
+.member_name_wrap {
+    .Polaris-SkeletonBodyText{
+        &:first-child {
+            width: 80%;
+        }
+        &:last-child{
+            width: 80%;
+        }
+    }
+}

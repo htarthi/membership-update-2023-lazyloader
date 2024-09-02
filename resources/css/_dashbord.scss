@@ -1,0 +1,335 @@
+.mainWrap {
+    // max-width: 1008px;
+    // width: 100%;
+    // margin: 32px auto 0px;
+
+    .bannerWrap {
+        margin-top: 24px;
+        padding: 20px;
+        background-color: #EAECF0;
+        border-radius: 20px;
+
+        @media (max-width: 1320px) {
+            width: 100%;
+        }
+
+        .Polaris-Banner__Button {
+            background-color: $white;
+            padding: 5px 12px;
+            border: 1px solid #D0D5DD !important;
+            border-radius: 8px;
+            box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.05);
+        }
+
+        .Polaris-Banner {
+            margin-top: 16px;
+            // padding: 12px 16px 16px;
+
+        }
+
+        .Polaris-SkeletonBodyText__SkeletonBodyTextContainer {
+            margin-top: 16px;
+        }
+
+        .cardWrap {
+            display: flex;
+            align-items: flex-start;
+           justify-content: space-between;
+            margin-top: 16px;
+            flex-wrap: wrap;
+
+            // @media (max-width: 1035px) {
+            //     justify-content: center;
+            // }
+
+            @media (max-width: 1225px) {
+                row-gap: 16px;
+            }
+            .Polaris-SkeletonDisplayText__DisplayText {
+                width: 100%;
+            }
+
+            .membersCard {
+                max-width: 32%;
+                width: 100%;
+                background-color: $white;
+                padding: 16px;
+                border: 1px solid $borderWhite;
+                border-radius: 12px;
+
+                @media (max-width: 1225px) {
+                    max-width: 100%;
+                    width: 49%;
+                }
+
+                @media (max-width: 1050px) {
+                    width: 48%;
+                }
+
+                @media (max-width: 600px) {
+                    width: 100%;
+                }
+
+                .CardHead {
+                    display: flex;
+                    align-items: flex-start;
+                    justify-content: space-between;
+
+
+                    .timePer {
+                        display: flex;
+                        align-items: center;
+                        gap: 4px;
+
+                        h6 {
+                            color: $textGrey;
+
+                            span {
+                                color: $red;
+                            }
+                        }
+
+                        &.upTimePer {
+                            h6 {
+
+                                span {
+                                    color: $green;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .CardBody {
+                    margin-top: 8px;
+                    display: flex;
+                    align-items: flex-end;
+                    justify-content: space-between;
+
+                    .activityText {
+                        display: flex;
+                        flex-direction: column;
+
+                        h6 {
+                            color: $textGrey;
+
+                        }
+                    }
+                }
+
+            }
+        }
+
+        &.tableWrap {
+            max-width: 100%;
+            width: 100%;
+        }
+
+        .Polaris-DataTable {
+            margin-top: 16px;
+        }
+
+        .Polaris-DataTable__Table {
+            border: 1px solid $borderWhite;
+            border-radius: 12px;
+
+            thead {
+                tr {
+                    background-color: #F9FAFB;
+                }
+            }
+
+            th,
+            td {
+                &.Polaris-DataTable__Cell {
+
+                    padding: 10px 12px
+                }
+            }
+        }
+
+        .startCardWrap {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            flex-direction: column;
+
+            @media (max-width:1050px) {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            // @media (max-width: 870px) {
+            //     justify-content: center;
+            // }
+
+            margin-top: 16px;
+
+            .startCard {
+                min-width: 290px;
+                max-width: 290px;
+                width: 100%;
+                background-color: $white;
+                border-radius: 12px;
+                border: 1px solid $whiteSmoke;
+                // height: 376px;
+
+                @media (max-width: 1225px) {
+                    min-width: 270px;
+                    max-width: 270px;
+                }
+
+                @media (max-width: 1050px) {
+                    min-width: 48%;
+
+                    .topImg {
+                        img {
+                            width: 100%;
+                            border-radius: 12px 12px 0 0;
+                        }
+
+                        iframe {
+                            max-width: 100%;
+                            border-radius: 12px 12px 0 0;
+                        }
+                    }
+                }
+
+                @media (max-width: 650px) {
+                    min-width: 100%;
+
+                    .topImg {
+                        img {
+                            width: 100%;
+                            border-radius: 12px 12px 0 0;
+
+                        }
+
+                        iframe {
+                            max-width: 100%;
+                            border-radius: 12px 12px 0 0;
+                        }
+                    }
+                }
+
+                .Polaris-Button {
+                    margin-top: 5px;
+                    border-radius: 8px;
+                    padding: 5px 12px;
+
+                    a {
+                        color: $black;
+                        text-decoration: none;
+                    }
+                }
+
+                .topImg {
+
+                    img{
+                        width: 100%;
+                        border-radius: 12px 12px 0 0;
+
+                    }
+                    iframe {
+                        border-radius: 20px;
+                        max-width: 290px;
+                        width: 100%;
+                        min-height: 158px;
+
+                        @media (max-width: 1050px) {
+                            max-width: 100%;
+                        }
+                    }
+                }
+
+                .bottomSec {
+                    padding: 8px 16px 16px;
+
+                    .headWrap {
+                        display: flex;
+                        align-items: flex-start;
+                        justify-content: space-between;
+
+
+                        h5 {
+                            margin-bottom: 4px;
+                        }
+
+                        .Polaris-Button__Icon {
+                            display: none;
+                        }
+
+                        .Polaris-Button {
+                            margin: 0;
+                            border: none;
+                            box-shadow: none;
+                        }
+                    }
+                }
+            }
+        }
+
+        .NoData {
+            max-width: 298px;
+            width: 100%;
+            margin: 16px auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 16px;
+            text-align: center;
+        }
+    }
+
+    .tableStartWrap {
+        display: flex;
+        align-items: flex-start;
+        gap: 24px;
+
+        .tableWrap {
+            width: 100%;
+            .bannerWrap{
+                max-width:100%;
+            }
+        }
+        .bannerWrap{
+            max-width: 330px;
+            width: 100%;
+        }
+        @media (max-width: 1320px) {
+            .bannerWrap {
+                width: auto;
+            }
+        }
+
+        @media (max-width:1050px) {
+            flex-direction: column;
+
+            .bannerWrap {
+                width: 100%;
+                max-width: 100%;
+            }
+
+        }
+    }
+}
+#favDialog{
+    padding: 0;
+    border: none;
+    min-width: 75vh;
+    border-radius :12px;
+
+
+    @media(max-width:768px){
+        min-width: 75%;
+    }
+    @media(max-width:340px){
+        min-width: 65%;
+    }
+    .btn_cancel{
+        display: none;
+    }
+
+
+}
