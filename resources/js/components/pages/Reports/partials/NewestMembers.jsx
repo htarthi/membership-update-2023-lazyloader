@@ -6,8 +6,9 @@ import { newestMembers } from '../../../../data/features/reports/reportAction';
 import { defultFilterUpdate } from '../../../../data/features/reports/reportSlice';
 import { Reports_Filters } from './Reports_Filters';
 import { useNavigate } from "react-router-dom";
+import { defaults } from 'lodash';
 
-export const NewestMembers = () => {
+export default function NewestMembers ()  {
 
     const dispatch = useDispatch();
     const newest_members = useSelector(

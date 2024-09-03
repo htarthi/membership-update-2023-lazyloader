@@ -137,7 +137,7 @@ export const EmailModel = ({ active, setActive, value }) => {
 
                     <div className="editor_wrap">
                         <Editor
-                                    tinymceScriptSrc='/tinymce/js/tinymce/tinymce.min.js'
+                                    // tinymceScriptSrc='/tinymce/js/tinymce/tinymce.min.js'
 
                             apiKey='1rcs3k88yvqskndstp9m23nacrexuwycmlmalh5k8f3u5bx3'
                             className="evl-editor"

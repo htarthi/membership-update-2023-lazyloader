@@ -18,7 +18,7 @@ import { defultFilterUpdate } from "../../../../data/features/reports/reportSlic
 import { Reports_Filters } from "./Reports_Filters";
 import { useNavigate } from "react-router-dom";
 
-export const BillingAttempts = () => {
+export default function BillingAttempts () {
     const dispatch = useDispatch();
     const recent_biilling_attempts = useSelector(
         (state) => state?.reports?.data?.recent_biilling_attempts,

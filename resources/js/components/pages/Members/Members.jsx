@@ -1,5 +1,5 @@
 import { Page } from '@shopify/polaris'
-import React, { useEffect,useState } from 'react'
+import React, { useEffect,useState,lazy } from 'react'
 import instance from '../../shopify/instance'
 import NewMemberList from './Partials/NewMemberList'
 import SubHeader from '../../GlobalPartials/SubHeader/SubHeader'

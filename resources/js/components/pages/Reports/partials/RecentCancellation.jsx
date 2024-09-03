@@ -15,7 +15,7 @@ import { defultFilterUpdate } from "../../../../data/features/reports/reportSlic
 import { Reports_Filters } from "./Reports_Filters";
 import { useNavigate } from "react-router-dom";
 
-export const RecentCancellation = () => {
+export default function RecentCancellation  ()  {
     const dispatch = useDispatch();
     const recent_cancellation = useSelector(
         (state) => state?.reports?.data?.recent_cancellation,
@@ -280,3 +280,4 @@ export const RecentCancellation = () => {
         </>
     );
 };
+

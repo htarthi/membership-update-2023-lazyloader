@@ -242,7 +242,7 @@ export default function DiscountFreeShipping() {
                                             {
                                                 discountCodes.length > 1 ? <Button  variant="primary" tone="critical"onClick={() => deleteDiscountCode(item.id, index)}>Delete Discount</Button> : <Button variant="primary" disabled tone="critical"onClick={() => deleteDiscountCode(item.id, index)}>Delete Discount</Button>
                                             }
-                                            
+
                                         </div>
                                     </div>
                                 ))}

@@ -7,24 +7,32 @@ import {
     SkeletonBodyText
 } from '@shopify/polaris'
 import SubHeader from '../../GlobalPartials/SubHeader/SubHeader'
-import React, { useEffect, useState, useRef ,useCallback} from 'react'
+import React, { useEffect, useState, useRef ,useCallback,lazy,Suspense} from 'react'
 import {
     CalendarIcon,
     ArrowRightIcon,
     CaretDownIcon
 } from '@shopify/polaris-icons';
-import OtherReports from './partials/OtherReports';
+import ReportSekeleton from './ReportSekeleton';
+
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { getData } from '../../../data/features/reports/reportAction';
-import { UpcomingRenewals } from './partials/UpcomingRenewals';
-import { BillingAttempts } from './partials/BillingAttempts';
-import { filterReset } from '../../../data/features/reports/reportSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { NewestMembers } from './partials/NewestMembers';
-import { RecentCancellation } from './partials/RecentCancellation';
 import instance from '../../shopify/instance';
 import { toast } from 'react-toastify';
+import { filterReset } from '../../../data/features/reports/reportSlice';
+
+import OtherReports from './partials/OtherReports';
+const UpcomingRenewals = lazy(() => {
+    console.log("Loading CreditCardsRetries...");
+    return import('./partials/UpcomingRenewals');
+});
+// Lazy load components
+// const UpcomingRenewals = lazy(() => import('./partials/UpcomingRenewals'));
+const BillingAttempts = lazy(() => import("./partials/BillingAttempts"));
+const NewestMembers = lazy(() => import('./partials/NewestMembers'));
+const RecentCancellation = lazy(() => import("./partials/RecentCancellation"));
 
 function Reports() {
 
@@ -41,9 +49,6 @@ function Reports() {
     const plans$ = useSelector((state) => state.plans?.data);
     // const shopDomain = useSelector((state) => state?.reports?.shopDomain);
     const shopDomain = useSelector((state) => state?.reports?.data?.other_reports?.shop?.id);
-
-
-
 
     useEffect(() => {
         dispatch(getData("last_7_days"));
@@ -381,28 +386,24 @@ function Reports() {
         setPickerOpen(false);
     };
 
-    const handleSegmentSelect = (segmentIndex) => {
+    // hitarthi
+    const handleSegmentSelect = useCallback((segmentIndex) => {
         dispatch(filterReset());
-        if (segmentIndex == 1) {
-            navigate(`/reports?=upcoming_reports`, { replace: true });
-        } else if (segmentIndex == 2) {
-            navigate(`/reports?=recent_billing_attempt_report`, { replace: true });
-        } else if (segmentIndex == 3) {
-            navigate(`/reports?=newest_member_report`, { replace: true });
-        } else if (segmentIndex == 4) {
-            navigate(`/reports?=recent_cancellation_report`, { replace: true });
-        } else {
-            navigate(`/reports`, { replace: true });
-        }
-        // setUpcomingRenewalsvisible(false);
-        // console.log(segmentIndex);
-        // if (segmentIndex == '4') {
-        //     console.log("dasdas");
-        //     setUpcomingRenewalsvisible(true);
-        // }
+        // Navigate and set the selected segment index
+        if (segmentIndex === 1) navigate(`/reports?=upcoming_reports`, { replace: true });
+        else if (segmentIndex === 2) navigate(`/reports?=recent_billing_attempt_report`, { replace: true });
+        else if (segmentIndex === 3) navigate(`/reports?=newest_member_report`, { replace: true });
+        else if (segmentIndex === 4) navigate(`/reports?=recent_cancellation_report`, { replace: true });
+        else navigate(`/reports`, { replace: true });
+
         setSelectedSegmentIndex(Number(segmentIndex));
-        handleClosePicker();
-    };
+
+        // Close the picker after a short delay
+        setTimeout(() => {
+            setPickerOpen(false);
+        }, 100);
+    }, [dispatch, navigate]);
+    // hitarthi
 
     const activator = (
         <div className='dropdownBtn' style={{display:"flex"}} id="reports">
@@ -447,40 +448,45 @@ function Reports() {
     );
 
     return (
-        <div className='reportsWrap'>
-            <div className='report_subheader'>
+        <div className="reportsWrap">
+            <div className="report_subheader">
                 <InlineStack align="space-between" blockAlign="center">
-                    <SubHeader title={"Reports"} needHelp={false} secondButtonState={false} exportButtonState={false} />
+                    <SubHeader
+                        title={"Reports"}
+                        needHelp={false}
+                        secondButtonState={false}
+                        exportButtonState={false}
+                    />
                     {/* hitarthi */}
-                    {selectedSegmentIndex !== 0 &&
+                    {selectedSegmentIndex !== 0 && (
                         <div style={{ marginRight: "40px" }}>
-                            <Button onClick={handleChange} >Export</Button>
+                            <Button onClick={handleChange}>Export</Button>
                         </div>
-                    }
+                    )}
                     <Modal
                         open={active}
                         onClose={resetData}
-                        title={<Text fontWeight='medium'>Export Report</Text>}
+                        title={<Text fontWeight="medium">Export Report</Text>}
                         primaryAction={{
-                            content: 'Send Mail',
+                            content: "Send Mail",
                             onAction: handleExport,
                         }}
                         secondaryActions={[
                             {
-                                content: 'Cancel',
+                                content: "Cancel",
                                 onAction: resetData,
                             },
                         ]}
                     >
                         <Modal.Section>
                             <TextField
-                                type='email'
+                                type="email"
                                 label={"Email"}
                                 value={email}
-                                name='email'
+                                name="email"
                                 onChange={(val) => handleEmailChange(val)}
                                 autoComplete="email"
-                                error={checkerror ? "Email is Invalid" : ''}
+                                error={checkerror ? "Email is Invalid" : ""}
                             />
                         </Modal.Section>
                     </Modal>
@@ -488,226 +494,351 @@ function Reports() {
             </div>
             <div className="simplee_membership_main_wrap report_add">
                 <div className="simplee_membership_container">
-                    <Page fullWidth >
-                        <div className='calanderWrap'>
-                            {
-                                isLoading ? <SkeletonBodyText lines={1} /> :
-                                    <>
-                                        {/* DropDown selecter */}
-                                        <Popover
-                                            active={pickerOpen}
-                                            activator={activator}
-                                            ariaHaspopup="listbox"
-                                            preferredAlignment="left"
-                                            autofocusTarget="first-node"
-                                            onClose={handleClosePicker}
-                                        >
+                    <Page fullWidth>
+                        <div className="calanderWrap">
+                            {isLoading ? (
+                                <ReportSekeleton />
+                            ) : (
+                                <>
+                                    {/* DropDown selecter */}
 
-                                            <div className='dropdown_wrap'>
-
-                                                <Popover.Pane fixed>
-                                                    <div
+                                    <Popover
+                                        active={pickerOpen}
+                                        activator={activator}
+                                        ariaHaspopup="listbox"
+                                        preferredAlignment="left"
+                                        autofocusTarget="first-node"
+                                        onClose={handleClosePicker}
+                                    >
+                                        <div className="dropdown_wrap">
+                                            <Popover.Pane fixed>
+                                                <div
+                                                    style={{
+                                                        alignItems: "stretch",
+                                                        borderTop:
+                                                            "1px solid #DFE3E8",
+                                                        display: "flex",
+                                                        flexDirection: "column",
+                                                        justifyContent:
+                                                            "stretch",
+                                                        position: "relative",
+                                                        width: "100%",
+                                                        height: "100%",
+                                                        overflow: "hidden",
+                                                    }}
+                                                >
+                                                    <Scrollable
+                                                        shadow
                                                         style={{
-                                                            alignItems: 'stretch',
-                                                            borderTop: '1px solid #DFE3E8',
-                                                            display: 'flex',
-                                                            flexDirection: 'column',
-                                                            justifyContent: 'stretch',
-                                                            position: 'relative',
-                                                            width: '100%',
-                                                            height: '100%',
-                                                            overflow: 'hidden',
+                                                            position:
+                                                                "relative",
+                                                            width: "100vw",
+                                                            height: "132%",
+                                                            padding:
+                                                                "var(--p-space-200) 0",
+                                                            borderBottomLeftRadius:
+                                                                "var(--p-border-radius-200)",
+                                                            borderBottomRightRadius:
+                                                                "var(--p-border-radius-200)",
                                                         }}
                                                     >
+                                                        {listboxMarkup}
+                                                    </Scrollable>
+                                                </div>
+                                            </Popover.Pane>
+                                        </div>
+                                    </Popover>
 
-                                                        <Scrollable
-                                                            shadow
-                                                            style={{
-                                                                position: 'relative',
-                                                                width: '100vw',
-                                                                height: '132%',
-                                                                padding: 'var(--p-space-200) 0',
-                                                                borderBottomLeftRadius: 'var(--p-border-radius-200)',
-                                                                borderBottomRightRadius: 'var(--p-border-radius-200)',
-                                                            }}
+                                    {selectedSegmentIndex === 0 && (
+                                        <Popover
+                                            active={popoverActive}
+                                            autofocusTarget="none"
+                                            preferredAlignment="left"
+                                            preferredPosition="below"
+                                            fluidContent
+                                            sectioned={false}
+                                            fullHeight
+                                            activator={
+                                                <div
+                                                    className="dropdownBtn"
+                                                    style={{ display: "flex" }}
+                                                    id="reports"
+                                                >
+                                                    <Button
+                                                        size="slim"
+                                                        onClick={() =>
+                                                            setPopoverActive(
+                                                                !popoverActive
+                                                            )
+                                                        }
+                                                        textAlign="left"
+                                                    >
+                                                        <Text
+                                                            fontWeight="medium"
+                                                            alignment="start"
                                                         >
-                                                            {listboxMarkup}
-                                                        </Scrollable>
-                                                    </div>
-                                                </Popover.Pane>
-                                            </div>
-                                        </Popover>
-
-                                        {
-                                            selectedSegmentIndex === 0 &&
-                                            <Popover
-                                                active={popoverActive}
-                                                autofocusTarget="none"
-                                                preferredAlignment="left"
-                                                preferredPosition="below"
-                                                fluidContent
-                                                sectioned={false}
-                                                fullHeight
-                                                activator={
-                                                    // <div className='calanderBtn'>
-                                                    //     <Button
-                                                    //         size="slim"
-                                                    //         icon={CalendarIcon}
-                                                    //         onClick={() => setPopoverActive(!popoverActive)}
-
-                                                    //     >
-                                                    //         {buttonValue}
-                                                    //     </Button>
-                                                    // </div>
-                                                    <div className='dropdownBtn' style={{display:"flex"}} id="reports">
-                                                        <Button
-                                                            size="slim"
-                                                            onClick={() => setPopoverActive(!popoverActive)}
-                                                            textAlign='left'
-                                                        >
-                                                        <Text fontWeight='medium' alignment='start'>{buttonValue}</Text>
+                                                            {buttonValue}
+                                                        </Text>
                                                         <div className="other-reports">
                                                             <Icon
-                                                            source={CalendarIcon}
-                                                            tone="base"
-                                                            alignItems='end'
+                                                                source={
+                                                                    CalendarIcon
+                                                                }
+                                                                tone="base"
+                                                                alignItems="end"
                                                             />
                                                         </div>
-                                                        </Button>
-                                                    </div>
-                                                }
-                                                onClose={() => setPopoverActive(false)}
+                                                    </Button>
+                                                </div>
+                                            }
+                                            onClose={() =>
+                                                setPopoverActive(false)
+                                            }
+                                        >
+                                            <InlineGrid
+                                                columns={{
+                                                    xs: "1fr",
+                                                    mdDown: "1fr",
+                                                    md: "max-content max-content",
+                                                }}
+                                                gap={0}
+                                                ref={datePickerRef}
                                             >
-                                                {/* <Popover.Pane fixed> */}
-                                                <InlineGrid
-                                                    columns={{
-                                                        xs: "1fr",
-                                                        mdDown: "1fr",
-                                                        md: "max-content max-content",
+                                                <Box
+                                                    maxWidth={
+                                                        mdDown
+                                                            ? "516px"
+                                                            : "141px"
+                                                    }
+                                                    width={
+                                                        mdDown
+                                                            ? "100%"
+                                                            : "141px"
+                                                    }
+                                                    padding={{ xs: 500, md: 0 }}
+                                                    paddingBlockEnd={{
+                                                        xs: 100,
+                                                        md: 0,
                                                     }}
-                                                    gap={0}
-                                                    ref={datePickerRef}
+                                                    id="calanderBox"
                                                 >
-                                                    <Box
-                                                        maxWidth={mdDown ? "516px" : "141px"}
-                                                        width={mdDown ? "100%" : "141px"}
-                                                        padding={{ xs: 500, md: 0 }}
-                                                        paddingBlockEnd={{ xs: 100, md: 0 }}
-                                                        id="calanderBox"
-                                                    >
-                                                        {mdDown ? (
-                                                            <Select
-                                                                label="dateRangeLabel"
-                                                                labelHidden
-                                                                onChange={(value) => {
-                                                                    const result = ranges.find(
-                                                                        ({ title, alias }) => title === value || alias === value
+                                                    {mdDown ? (
+                                                        <Select
+                                                            label="dateRangeLabel"
+                                                            labelHidden
+                                                            onChange={(
+                                                                value
+                                                            ) => {
+                                                                const result =
+                                                                    ranges.find(
+                                                                        ({
+                                                                            title,
+                                                                            alias,
+                                                                        }) =>
+                                                                            title ===
+                                                                                value ||
+                                                                            alias ===
+                                                                                value
                                                                     );
-                                                                    setActiveDateRange(result);
-                                                                    const month = result.period.since.getMonth();
-                                                                    const year = result.period.since.getFullYear();
-                                                                    setDate({ month, year });
-                                                                }}
-                                                                value={activeDateRange?.title || activeDateRange?.alias || ""}
-                                                                options={ranges.map(({ alias, title }) => title || alias)}
-                                                            />
-                                                        ) : (
-                                                            <Scrollable style={{ height: "334px" }}>
-                                                                <OptionList
-                                                                    options={ranges.map((range) => ({
+                                                                setActiveDateRange(
+                                                                    result
+                                                                );
+                                                                const month =
+                                                                    result.period.since.getMonth();
+                                                                const year =
+                                                                    result.period.since.getFullYear();
+                                                                setDate({
+                                                                    month,
+                                                                    year,
+                                                                });
+                                                            }}
+                                                            value={
+                                                                activeDateRange?.title ||
+                                                                activeDateRange?.alias ||
+                                                                ""
+                                                            }
+                                                            options={ranges.map(
+                                                                ({
+                                                                    alias,
+                                                                    title,
+                                                                }) =>
+                                                                    title ||
+                                                                    alias
+                                                            )}
+                                                        />
+                                                    ) : (
+                                                        <Scrollable
+                                                            style={{
+                                                                height: "334px",
+                                                            }}
+                                                        >
+                                                            <OptionList
+                                                                options={ranges.map(
+                                                                    (
+                                                                        range
+                                                                    ) => ({
                                                                         value: range.alias,
                                                                         label: range.title,
-                                                                    }))}
-                                                                    selected={activeDateRange.alias}
-                                                                    onChange={(value) => {
-                                                                        const selectedRange = ranges.find((range) => range.alias === value[0]);
-                                                                        setActiveDateRange(selectedRange);
-                                                                        const month = selectedRange.period.since.getMonth();
-                                                                        const year = selectedRange.period.since.getFullYear();
-                                                                        setDate({ month, year });
-                                                                    }}
-                                                                />
-                                                            </Scrollable>
-                                                        )}
-                                                    </Box>
-
-                                                    <Box padding={{ xs: 500 }} maxWidth={mdDown ? "320px" : "516px"}>
-                                                        <BlockStack gap="400">
-                                                            <InlineStack gap="2" align="space-between" blockAlign="center">
-                                                                <div >
-                                                                    <TextField
-                                                                        role="combobox"
-                                                                        label={"Since"}
-                                                                        labelHidden
-                                                                        prefix={<Icon source={CalendarIcon} />}
-                                                                        value={inputValues.since}
-                                                                        onChange={handleStartInputValueChange}
-                                                                        onBlur={handleInputBlur}
-                                                                        autoComplete="off"
-                                                                        disabled
-                                                                    />
-                                                                </div>
-                                                                <Icon source={ArrowRightIcon} />
-                                                                <div >
-                                                                    <TextField
-                                                                        role="combobox"
-                                                                        label={"Until"}
-                                                                        labelHidden
-                                                                        prefix={<Icon source={CalendarIcon} />}
-                                                                        value={inputValues.until}
-                                                                        onChange={handleEndInputValueChange}
-                                                                        onBlur={handleInputBlur}
-                                                                        autoComplete="off"
-                                                                        disabled
-                                                                    />
-                                                                </div>
-                                                            </InlineStack>
+                                                                    })
+                                                                )}
+                                                                selected={
+                                                                    activeDateRange.alias
+                                                                }
+                                                                onChange={(
+                                                                    value
+                                                                ) => {
+                                                                    const selectedRange =
+                                                                        ranges.find(
+                                                                            (
+                                                                                range
+                                                                            ) =>
+                                                                                range.alias ===
+                                                                                value[0]
+                                                                        );
+                                                                    setActiveDateRange(
+                                                                        selectedRange
+                                                                    );
+                                                                    const month =
+                                                                        selectedRange.period.since.getMonth();
+                                                                    const year =
+                                                                        selectedRange.period.since.getFullYear();
+                                                                    setDate({
+                                                                        month,
+                                                                        year,
+                                                                    });
+                                                                }}
+                                                            />
+                                                        </Scrollable>
+                                                    )}
+                                                </Box>
+                                                <Box
+                                                    padding={{ xs: 500 }}
+                                                    maxWidth={
+                                                        mdDown
+                                                            ? "320px"
+                                                            : "516px"
+                                                    }
+                                                >
+                                                    <BlockStack gap="400">
+                                                        <InlineStack
+                                                            gap="2"
+                                                            align="space-between"
+                                                            blockAlign="center"
+                                                        >
                                                             <div>
-                                                                <DatePicker
-                                                                    month={month}
-                                                                    year={year}
-                                                                    selected={{
-                                                                        start: activeDateRange.period.since,
-                                                                        end: activeDateRange.period.until,
-                                                                    }}
-                                                                    onMonthChange={handleMonthChange}
-                                                                    onChange={handleCalendarChange}
-                                                                    multiMonth={shouldShowMultiMonth}
-                                                                    allowRange
-                                                                    disableDatesAfter={today}
+                                                                <TextField
+                                                                    role="combobox"
+                                                                    label="Since"
+                                                                    labelHidden
+                                                                    prefix={
+                                                                        <Icon
+                                                                            source={
+                                                                                CalendarIcon
+                                                                            }
+                                                                        />
+                                                                    }
+                                                                    value={
+                                                                        inputValues.since
+                                                                    }
+                                                                    onChange={
+                                                                        handleStartInputValueChange
+                                                                    }
+                                                                    onBlur={
+                                                                        handleInputBlur
+                                                                    }
+                                                                    autoComplete="off"
+                                                                    disabled
                                                                 />
                                                             </div>
-                                                        </BlockStack>
-                                                    </Box>
-                                                </InlineGrid>
-                                                {/* </Popover.Pane> */}
-                                                {/* <Popover.Pane fixed> */}
-                                                <Popover.Section>
-                                                    <InlineStack align="end" gap={5} >
-                                                        <Button onClick={cancel}>Cancel</Button>
-                                                        <Button  onClick={apply} variant="primary">
-                                                            Apply
-                                                        </Button>
-                                                    </InlineStack>
-                                                </Popover.Section>
-                                                {/* </Popover.Pane> */}
-                                            </Popover>
-                                        }
-                                    </>
-
-                            }
-
+                                                            <Icon
+                                                                source={
+                                                                    ArrowRightIcon
+                                                                }
+                                                            />
+                                                            <div>
+                                                                <TextField
+                                                                    role="combobox"
+                                                                    label="Until"
+                                                                    labelHidden
+                                                                    prefix={
+                                                                        <Icon
+                                                                            source={
+                                                                                CalendarIcon
+                                                                            }
+                                                                        />
+                                                                    }
+                                                                    value={
+                                                                        inputValues.until
+                                                                    }
+                                                                    onChange={
+                                                                        handleEndInputValueChange
+                                                                    }
+                                                                    onBlur={
+                                                                        handleInputBlur
+                                                                    }
+                                                                    autoComplete="off"
+                                                                    disabled
+                                                                />
+                                                            </div>
+                                                        </InlineStack>
+                                                        <div>
+                                                            <DatePicker
+                                                                month={month}
+                                                                year={year}
+                                                                selected={{
+                                                                    start: activeDateRange
+                                                                        .period
+                                                                        .since,
+                                                                    end: activeDateRange
+                                                                        .period
+                                                                        .until,
+                                                                }}
+                                                                onMonthChange={
+                                                                    handleMonthChange
+                                                                }
+                                                                onChange={
+                                                                    handleCalendarChange
+                                                                }
+                                                                multiMonth={
+                                                                    shouldShowMultiMonth
+                                                                }
+                                                                allowRange
+                                                                disableDatesAfter={
+                                                                    today
+                                                                }
+                                                            />
+                                                        </div>
+                                                    </BlockStack>
+                                                </Box>
+                                            </InlineGrid>
+                                        </Popover>
+                                    )}
+                                </>
+                            )}
                         </div>
                     </Page>
                     <Page fullWidth>
-                        {selectedSegmentIndex == 2 && <BillingAttempts />}
+                        <Suspense fallback={<ReportSekeleton />}>
+                            {selectedSegmentIndex === 1 && <UpcomingRenewals />}
+                            {selectedSegmentIndex === 2 && <BillingAttempts />}
+                            {selectedSegmentIndex === 3 && <NewestMembers />}
+                            {selectedSegmentIndex === 4 && (
+                                <RecentCancellation />
+                            )}
+                            {selectedSegmentIndex === 0 && <OtherReports />}
+                        </Suspense>
+                    </Page>
+                    {/* <Page fullWidth>
+                        {selectedSegmentIndex == 2 &&
+
+                        <BillingAttempts />}
                     </Page>
                     {/*
                      <Page fullWidth>
                             <UpcomingRenewals/>
                     </Page> */}
 
-                    <Page fullWidth>
+                    {/*<Page fullWidth>
                         {selectedSegmentIndex === 1 && <UpcomingRenewals />}
                     </Page>
 
@@ -723,11 +854,9 @@ function Reports() {
                     <Page fullWidth >
                         {selectedSegmentIndex === 4 &&
                             <RecentCancellation />}
-                    </Page>
-
+                    </Page> */}
                 </div>
             </div>
-
         </div>
     );
 }

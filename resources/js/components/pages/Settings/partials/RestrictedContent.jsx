@@ -42,7 +42,7 @@ export default function RestrictedContent() {
                                 </div>
 
                                 <Editor
-                                    tinymceScriptSrc='/tinymce/js/tinymce/tinymce.min.js'
+                                    // tinymceScriptSrc='/tinymce/js/tinymce/tinymce.min.js'
                                     apiKey='1rcs3k88yvqskndstp9m23nacrexuwycmlmalh5k8f3u5bx3'
                                     className="evl-editor"
                                     onInit={(evt, editor) => editorRef.current = editor}

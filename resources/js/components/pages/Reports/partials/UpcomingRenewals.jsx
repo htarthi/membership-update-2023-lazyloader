@@ -10,7 +10,7 @@ import { slice } from "lodash";
 import { useNavigate } from "react-router-dom";
 
 
-export const UpcomingRenewals = () => {
+export default function UpcomingRenewals() {
     const dispatch = useDispatch();
 
     const defaultFilter$ = useSelector((state) => state?.reports?.defaultFilter);
