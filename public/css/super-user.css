@@ -1,0 +1,242 @@
+/* custom css start */
+
+h1,
+h2,
+h3 {
+  font-family: sf-pro-bold;
+}
+
+h4 {
+  font-family: sf-pro-regular;
+}
+
+h5,
+h6,
+p,
+span,
+td,
+button,
+th,
+label {
+  font-family: sf-pro-text !important;
+}
+
+ul {
+  list-style: none;
+}
+
+a,
+a:hover {
+  text-decoration: none !important;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+input:focus,
+.custom-select {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+body {
+  font-family: sf-pro-text !important;
+}
+
+body .custom_input {
+  box-shadow: inset 0px 1px 2px RGB(102 113 123/21%) !important;
+  border-radius: 3px !important;
+  border: 1px solid #c4cdd5;
+  height: 36px;
+}
+
+body .custom_input::-moz-placeholder {
+  font-size: 0.875rem;
+  color: #979797;
+}
+
+body .custom_input:-ms-input-placeholder {
+  font-size: 0.875rem;
+  color: #979797;
+}
+
+body .custom_input::placeholder {
+  font-size: 0.875rem;
+  color: #979797;
+}
+
+.primary_btn {
+  font-size: 0.875rem;
+  background-color: #007399;
+  color: #fff;
+  border: 1px solid #007399;
+  box-shadow: 0px 1px 0px RGB(22 29 37/10%), inset 0px 1px 0px RGB(255 255 255/6%);
+  border-radius: 3px;
+  padding: 6px 0;
+  text-align: center;
+}
+
+.medium_btn {
+  width: 115px;
+}
+
+.large_btn {
+  width: 150px;
+}
+
+.customer_portal_card {
+  padding: 25px;
+  background: #fcfcfc;
+  box-shadow: 0px 0px 5px RGB(0 0 0/25%);
+  border-radius: 7px;
+}
+
+.customer_info_listing li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.primary_color {
+  color: #007399;
+}
+
+.customer_info_listing li span,
+.customer_portal_card h3 {
+  font-size: 0.875rem;
+}
+
+.green_btn {
+  background: RGBA(0, 153, 61, 0.89);
+  border: 1px solid RGBA(0, 153, 61, 0.89);
+}
+
+.red_btn {
+  background: RGBA(153, 0, 0, 0.53);
+  border: 1px solid RGBA(153, 0, 0, 0.53);
+}
+
+/* custom css start */
+
+h1,
+h2,
+h3 {
+  font-family: sf-pro-bold;
+}
+
+h4 {
+  font-family: sf-pro-regular;
+}
+
+h5,
+h6,
+p,
+span,
+td,
+button,
+th,
+label {
+  font-family: sf-pro-text !important;
+}
+
+ul {
+  list-style: none;
+}
+
+a,
+a:hover {
+  text-decoration: none !important;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+input:focus,
+.custom-select {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+body {
+  font-family: sf-pro-text !important;
+}
+
+body .custom_input {
+  box-shadow: inset 0px 1px 2px RGB(102 113 123/21%) !important;
+  border-radius: 3px !important;
+  border: 1px solid #c4cdd5;
+  height: 36px;
+}
+
+body .custom_input::-moz-placeholder {
+  font-size: 0.875rem;
+  color: #979797;
+}
+
+body .custom_input:-ms-input-placeholder {
+  font-size: 0.875rem;
+  color: #979797;
+}
+
+body .custom_input::placeholder {
+  font-size: 0.875rem;
+  color: #979797;
+}
+
+.primary_btn {
+  font-size: 0.875rem;
+  background-color: #007399;
+  color: #fff;
+  border: 1px solid #007399;
+  box-shadow: 0px 1px 0px RGB(22 29 37/10%), inset 0px 1px 0px RGB(255 255 255/6%);
+  border-radius: 3px;
+  padding: 6px 0;
+  text-align: center;
+}
+
+.medium_btn {
+  width: 115px;
+}
+
+.large_btn {
+  width: 150px;
+}
+
+.customer_portal_card {
+  padding: 25px;
+  background: #fcfcfc;
+  box-shadow: 0px 0px 5px RGB(0 0 0/25%);
+  border-radius: 7px;
+}
+
+.customer_info_listing li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.primary_color {
+  color: #007399;
+}
+
+.customer_info_listing li span,
+.customer_portal_card h3 {
+  font-size: 0.875rem;
+}
+
+.green_btn {
+  background: RGBA(0, 153, 61, 0.89);
+  border: 1px solid RGBA(0, 153, 61, 0.89);
+}
+
+.red_btn {
+  background: RGBA(153, 0, 0, 0.53);
+  border: 1px solid RGBA(153, 0, 0, 0.53);
+}
+

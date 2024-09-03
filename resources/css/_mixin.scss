@@ -1,0 +1,85 @@
+@mixin font($fontsize, $fontweight, $lineheight, $color) {
+    font-family: 'SF Pro Text', sans-serif;
+    font-size: $fontsize;
+    font-weight: $fontweight;
+    line-height: $lineheight;
+    color: $color;
+}
+
+@mixin flex($flex-start, $justify-content){
+    display: flex;
+    align-items: $flex-start;
+    justify-content: $justify-content;
+}
+
+@mixin flex-align($flex-start){
+    display: flex;
+    align-items: $flex-start;
+}
+
+@mixin width($width, $height){
+    width: $width;
+    height: $height;
+}
+@mixin maxwidth($width){
+    max-width: $width;
+    width: 100%;
+}
+@mixin minwidth($width){
+    min-width: $width;
+    width: 100%;
+}
+
+@mixin grid($num, $columns_gap, $row_gap){
+    display: grid;
+    grid-template-columns: repeat($num, 1fr);
+    grid-column-gap: $columns_gap;
+    grid-row-gap: $row_gap;
+}
+
+@mixin grid-center(){
+    display: grid;
+    place-content: center;
+}
+
+@mixin background(){
+    background-color: $white;
+    border: 1px solid $lightgray;
+    border-radius: 12px;
+}
+@mixin boxstyle($color){
+    background: $color;
+    box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.05), 0px 0px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+}
+
+@mixin lineclamp($line){
+    display: -webkit-box;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@mixin customscroll(){
+    &::-webkit-scrollbar {
+        width: 8px;
+        height: 4px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: $ceramicwhite;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: $lightgray;
+        border-radius: 20px;
+    }
+}
+
+@mixin comman_mediaquery_padding(){
+    @media (max-width: 1200px) { margin: 24px 0 0; }
+    @media (max-width: 767px) { margin: 20px 0 0; }
+    @media (max-width: 480px) { margin: 16px 0 0; }
+}

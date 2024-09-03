@@ -1,0 +1,466 @@
+.member_details_main_wrap{
+    padding: 20px 32px;
+    border-top: 1px solid #DDE0E4;
+
+    @media (max-width: 768px) { padding: 20px; }
+    @media (max-width: 480px) { padding: 15px; }
+
+    .membership_detail_info_wrap{
+        @include flex-align(stretch);
+        .sub_col{
+            .order_detail_list_row{
+                .order_detail_main_col{
+                    @include grid(2, 20px, 20px);
+                    &:first-child{
+                        padding: 0 0 20px;
+                    }
+                    &:last-child{
+                        padding: 20px 0 0;
+                        border-top: 1px solid #DDE0E4;
+                    }
+                }
+                .order_detail_list_col{
+                    h6{
+                        &:not(:first-child){ margin: 4px 0 0; }
+                    }
+                    &:first-child{ padding: 0 20px 0 0; border-right: 1px solid #DDE0E4; }
+                }
+
+                @media (max-width: 480px) {
+                    &{
+                        .order_detail_main_col{
+                            grid-template-columns: repeat(1, 1fr);
+                            gap: 15px;
+                            &:first-child{ padding: 0 0 15px 0; }
+                            &:last-child{
+                                padding: 0;
+                                border-top: none;
+                            }
+                        }
+                        .order_detail_list_col{
+                            &:first-child{ padding: 0; border-right: none; }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .membership_detail_box_wrap{
+        .membership_detail_row{
+            @include flex-align(flex-start);
+            gap: 20px;
+            @media (max-width: 480px) { flex-direction: column; }
+
+            .membership_product_picture{
+                @include width(80px, 80px);
+                background-color: $lightgray;
+                border: 1px solid $lightgray;
+                img{
+                    @include width(100%, 100%);
+                    object-fit: contain;
+                }
+            }
+
+            .membership_product_detail_row{
+                width: calc(100% - 100px);
+                @include grid(3, 20px, 20px);
+                @media (max-width: 1100px) { gap: 15px; }
+                @media (min-width: 960px) and (max-width: 1100px) { grid-template-columns: repeat(2, 1fr); }
+                @media (max-width: 660px) { grid-template-columns: repeat(2, 1fr); }
+                @media (max-width: 480px) { width: 100%; }
+                @media (max-width: 350px) { grid-template-columns: repeat(1, 1fr); }
+
+                .membership_product_col{
+                    h6{
+                        &:last-child{ margin: 10px 0 0; }
+                        span{ width: 100%; display: block; }
+                    }
+                }
+            }
+        }
+    }
+    .product_order_table_wrap{
+        .Polaris-LegacyCard{ padding: 0 !important; }
+        table{
+            th{
+                padding: 16px;
+                h6{ color: $darekBlack; }
+            }
+            td{ padding: 16px; }
+        }
+        .memberlist_pagination{
+            padding: 15px 12px;
+            border-top: 1px solid $davyGrey;
+            .Polaris-ButtonGroup{
+                justify-content: center;
+            }
+        }
+    }
+    .question_answers_wrap{
+        .question_answer_col{
+            h6{
+                color: $darekBlack;
+                &:last-child{
+                    margin: 10px 0 0;
+                }
+            }
+        }
+        .total_answer_edit_block{
+            @include flex-align(center);
+            margin: 0 0 0 auto;
+            gap: 16px;
+        }
+        .accordian_question_block{
+            @include flex-align(flex-start);
+            gap: 16px;
+            @media (max-width: 480px) {
+                gap: 10px;
+            }
+                h6{
+                    text-align: left;
+                    width: calc(100% - 36px);
+                    @media (max-width: 480px) {
+                        width: calc(100% - 30px);
+                    }
+                    @media (max-width: 300px) {
+                       font-size: 14px;
+                    }
+                }
+                .Polaris-Icon{
+                    margin: 2px 0 0 0;
+                }
+            .disabled_icon{
+                opacity: 0.5;
+            }
+            &.disabled_button, .disabled_icon{
+                pointer-events: none;
+            }
+        }
+    }
+    .post_comments_wrap{
+        .Polaris-LegacyCard{ padding: 10px !important; }
+        .leave_comments_wrap{
+            @include flex(center, space-between);
+            gap: 15px;
+            .Polaris-Button{
+                margin: 0 auto;
+            }
+            @media (max-width: 350px) {
+                flex-direction: column;
+                .Polaris-Button{ width: 100% }
+            }
+
+            .leave_comments_field{
+                @include flex-align(center);
+                gap: 10px;
+                flex: 1 1 auto;
+
+                .avatar_wrap{
+                    @include width(40px, 40px);
+                    border-radius: 100%;
+                    img{ object-fit: cover; @include width(100%, 100%); border-radius: 100%; }
+                }
+                .input_field{
+                    flex: 1 1 auto;
+                    input{
+                        padding: 0;
+                    }
+                    .Polaris-TextField--focus > .Polaris-TextField__Input ~ .Polaris-TextField__Backdrop::after,
+                    .Polaris-TextField--focus > .Polaris-TextField__VerticalContent ~ .Polaris-TextField__Backdrop::after,
+                    .Polaris-TextField__Input:focus-visible ~ .Polaris-TextField__Backdrop::after {
+                        box-shadow: none;
+                        outline: none;
+                    }
+                    .Polaris-TextField__Backdrop{
+                        border: none;
+                        padding: 0;
+                    }
+                }
+            }
+        }
+
+        .commnets_list_wrap{
+            // max-height: 450px;
+            overflow: hidden;
+            // overflow-y: auto;
+            @include customscroll;
+        }
+        .comments_wrap{
+            margin: 0 0 0 29px;
+            padding: 0 5px 0 29px;
+            border-left: 2px solid $lightgray;
+
+            @media (max-width: 480px) {
+                margin: 0 0 0 16px;
+                padding: 0 0 20px 16px;
+            }
+            .comment_note{
+                width: 100%;
+                padding: 5px 0 20px;
+                h6{ text-align: right; }
+            }
+            .comment_block{
+                &:not(:last-child){
+                    padding: 0 0 20px;
+                }
+                .comment_date{ margin: 0 0 20px; }
+                .time_comments{
+                    position: relative;
+                    @include flex(center, space-between);
+                    flex-wrap: wrap;
+                    gap: 10px;
+                    .comment_msg{ h6{ color: $darekBlack; } }
+                    &.customer_comments{
+                        &::before{
+                            content: '';
+                            position: absolute;
+                            @include width(10px, 10px);
+                            background-color: $gray;
+                            border-radius: 100%;
+                            left: -35px;
+                            top: 6px;
+                            @media (max-width: 480px) {
+                                left: -22px;
+                            }
+                        }
+                    }
+                    &.admin_comments{
+                        .admin_avatar{
+                            position: absolute;
+                            @include width(24px, 24px);
+                            border-radius: 100%;
+                            left: -42px;
+                            top: -4px;
+                            @media (max-width: 480px) {
+                                left: -29px;
+                                @include width(20px, 20px);
+                            }
+                            img{
+                                @include width(100%, 100%);
+                                object-fit: cover;
+                                border-radius: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+
+            @media (max-width: 480px) {
+                &{
+                    margin: 4px 0 0 16px;
+                    padding: 0 0 20px 16px;
+                }
+            }
+        }
+
+    }
+    .membership_customers_detail_block{
+        .email_number_wrap{
+            a{ @include font(14px, 400, 20px, $darkSkyBlue); }
+        }
+    }
+    .payment_methos_block{
+        @include flex-align(center);
+        gap: 4px;
+        img{
+            @include width(35px, 24px);
+            object-fit: cover;
+        }
+        h6{ width: calc(100% - 39px); }
+    }
+}
+.main_box_wrap{
+    .Polaris-LegacyCard{
+        padding: 20px;
+        @media (max-width: 480px) { padding: 15px; }
+    }
+}
+
+.edit_header_block{
+    @include flex(center, space-between);
+    flex-wrap: wrap;
+    gap: 10px 16px;
+    button:not(.accordian_question_block){
+        padding: 2px 5px;
+        min-height: auto;
+        margin: 0 0 0 auto;
+        span{ font-weight: 400; }
+    }
+}
+.membership_status_block{
+    .status_badge_wrap{
+        @include flex-align(flex-start);
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+}
+
+// breadcrums
+.members_breadcrums{
+    @include flex(center, space-between);
+    flex-wrap: wrap;
+    gap: 15px;
+    .members_navigate_wrap{
+        gap: 16px;
+        @include flex-align(flex-start);
+        flex: 1 1 auto;
+    }
+    .back_arrow_wrap{
+        @include width(36px, 36px);
+        border: 1px solid $davyGrey;
+        border-radius: 4px;
+        @include grid-center();
+    }
+    .membership_detail_heading{
+        width: calc(100% - 52px);
+
+        .title_status_wrap{
+            @include flex-align(center);
+            flex-wrap: wrap;
+            gap: 8px;
+            .status_wrap{
+                @include flex-align(flex-start);
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+        }
+        h6{ color: $gray; margin: 10px 0 0; }
+    }
+    .mordeactions_pagination_wrap{
+        @include flex(center, flex-end);
+        flex-wrap: wrap;
+        flex: 1 1 auto;
+        gap: 8px;
+        .pagination_wrap{
+            .Polaris-Button{ background: $white; }
+        }
+    }
+}
+
+// modal style
+.membership_detail_edit_wrap{
+    label{ color: $darekBlack; }
+    .input_fields_wrap{
+        &:not(:last-child){margin: 0 0 10px;}
+    }
+    .input_two_fields_wrap{
+        @include grid(2, 10px, 10px);
+        &:not(:last-child){margin: 0 0 10px;}
+        .input_fields_wrap{
+            margin: 0;
+        }
+        @media (max-width: 480px) {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+}
+
+.current_credit_balance{
+    h6{ color: $darekBlack; }
+}
+
+.input_fields_wrap.product_input_field{
+    position: relative;
+    input{
+        padding-right: 140px;
+    }
+    .change_product_block{
+        position: absolute;
+        right: 16px;
+        top: 32px;
+        z-index: 99;
+        button{
+            padding: 0;
+            margin: 0;
+            min-height: auto;
+            span{ font-weight: 400; }
+        }
+    }
+    &.without_label{
+        .change_product_block{
+            top: 8px;
+        }
+    }
+}
+
+.edit_note_wrap{
+    textarea{
+        height: 120px !important;
+        @include customscroll();
+    }
+}
+
+.Polaris-Modal-Dialog__Modal{
+    .Polaris-InlineStack{
+        button.Polaris-Button { flex: 1 1 auto; };
+    }
+}
+
+.view_all{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+// skeleton ---------------------------------
+.member_details_main_wrap {
+    .membership_all_details_wrap {
+        .membership_info_wrap {
+            .membership_info_col {
+                .membership_details_skeleton {
+                    .heading_wrap{
+                        .Polaris-SkeletonDisplayText__DisplayText{
+                            width: 100%;
+                            max-width: 100%;
+                            height: 28px;
+                        }
+                    }
+                    .membership_detail_form {
+                        .membership_product_wrap {
+                            .product_wrap{
+                                .Polaris-SkeletonThumbnail{
+                                    width: 100%;
+                                    height: 100%;
+                                }
+                            }
+                        }
+                        .Polaris-SkeletonBodyText{
+                            margin-bottom: 5px;
+                        }
+                        .membership_input_field{
+                            .Polaris-SkeletonDisplayText__DisplayText{
+                                width: 100%;
+                                max-width: 100%;
+                            }
+                        }
+                        .reactivate_button_wrap{
+                            flex-wrap: nowrap;
+                            .Polaris-SkeletonDisplayText__DisplayText{
+                                width: 100%;
+                                max-width: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.paypal-img{
+    img {
+        width: 70px !important;
+    }
+}
+
+#purple_text{
+    color: purple !important;
+}
+
+#black_text{
+    color: black !important;
+
+}
+
+
